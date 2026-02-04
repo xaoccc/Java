@@ -46,3 +46,20 @@ check App-name.java for args
 
 - Array
 - Object
+
+## 4. Casting
+### Useful classes and methods:  
+- Byte/Short/Integer/Long...
+    - toString() 
+    - parseByte()/parseShort()/parseInt()/parseLong...
+    etc...
+- Math.
+    - ceil()
+    - round() 
+    - floor()
+    - random()
+    - min()
+    - max()
+- (byte), (short), (int), (long) num - converts double or float num to the specified type of primitive data
+
+

@@ -2,7 +2,7 @@ package com.tashev;
 import java.awt.Point;
 import java.util.Date;
 
-
+// Reference Data Types
 public final class App {
     public static void main(String[] args) {
         dates();
@@ -20,10 +20,13 @@ public final class App {
     public static void strings() {
         String name = " Pesho ";
         String name2 = name.strip();
+        char[] test = new char[10];
 
         for (byte i=0; i < name.length(); i++ ) {
             System.out.println(name.charAt(i));
+            test[i] = name.charAt(i);
         }
+        System.out.println(test);
 
         byte age = 5;
         byte newAge = age;
@@ -40,10 +43,6 @@ public final class App {
         point1.x = 3;
         // point2 points to the same place in memory as point1. Proof:
         System.out.println(point2);
-
-    }
-        
-    
-
+    }       
     
 }
