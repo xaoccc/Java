@@ -1,6 +1,6 @@
 package com.exercises;
 // Description:
-// Print calculate the area of a rectangle.
+// Calculate the area of a rectangle.
 // Solution:
 import java.util.Scanner;
 public class Problem003 {
@@ -11,7 +11,13 @@ public class Problem003 {
         System.out.print("Enter width: ");
         Scanner input2 = new Scanner(System.in);
         String width = input2.nextLine();
-        System.out.printf("The area is %d", Integer.parseInt(height) * Integer.parseInt(width));
+        // Place for validation of both inputs.
+        System.out.printf("The area is %f", Float.parseFloat(height) * Float.parseFloat(width));
+        input1.close();
+        input2.close();
     }
 }
-// Notes: Validation is not possible without a while loop, which is too advanced at this point.
+// Notes: 
+// Validation is not possible without a while loop, which is too advanced at this point.
+// Two Scanners in one block is a bad practice w/o try-with-recources. With try(Scanner..) {} 
+// we can use nextFloat() instead nextLine() and we don't need to close the Scanner, because it closes automatically.
