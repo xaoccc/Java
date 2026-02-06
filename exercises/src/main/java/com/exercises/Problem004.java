@@ -4,6 +4,7 @@ package com.exercises;
 // Solution:
 import java.util.Scanner;
 public class Problem004 {
+    @SuppressWarnings("ConvertToTryWithResources")
     public static void main(String[] args) {
         System.out.print("Enter value in centimeters: ");
         Scanner input = new Scanner(System.in);

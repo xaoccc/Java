@@ -4,6 +4,7 @@ import java.util.Scanner;
 // Greet by name.
 // Solution:
 public class Problem005 {
+    @SuppressWarnings("ConvertToTryWithResources")
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
         String name = input.nextLine();

@@ -10,6 +10,7 @@ public final class App {
         points();
     }
 
+    @SuppressWarnings("deprecation")
     public static void dates() {
         Date myDate = new Date(110, 4, 24);
         Date now = new Date();

@@ -4,6 +4,7 @@ import java.util.Scanner;
 // Calculate the area of a rectangle.
 // Solution:
 public class Problem003 {
+    @SuppressWarnings("ConvertToTryWithResources")
     public static void main(String[] args) {
         System.out.print("Enter height: ");
         Scanner input1 = new Scanner(System.in);        
