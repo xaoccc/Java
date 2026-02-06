@@ -1,17 +1,17 @@
 package com.exercises;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 // Description:
 // Concatenate data.
 // Solution:
-import java.util.InputMismatchException;
-import java.util.Scanner;
 public class Problem006 {
     public static void main(String[] args){
         try (Scanner input = new Scanner(System.in)) {
             System.out.print("Enter your first name: ");
-            String name = input.nextLine();
+            String name = input.nextLine().trim();
 
             System.out.print("Enter your last name: ");
-            String lastName = input.nextLine();
+            String lastName = input.nextLine().trim();
 
             System.out.print("Enter your age: ");
             byte age = input.nextByte();
