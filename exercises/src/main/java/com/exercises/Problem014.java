@@ -2,6 +2,7 @@ package com.exercises;
 import java.text.DecimalFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+// Description:
 // Rumen wants to repaint the living room and has hired craftsmen for this purpose. 
 // Write a program that calculates the costs of the repair, given the following prices:
 // · Protective nylon - 1.50 lv. per sq. meter
