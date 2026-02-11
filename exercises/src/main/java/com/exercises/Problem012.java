@@ -1,6 +1,6 @@
 package com.exercises;
-import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 // Description:
 // Bob is a student. Write a program, which calculates how many hours a day he should spend reading the necessary literature.
 // 3 lines are read from the console:
