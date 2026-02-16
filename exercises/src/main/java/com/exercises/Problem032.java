@@ -31,13 +31,16 @@ public class Problem032 {
             double lunchDuration = (double) breakDuration / 8;
             double relaxDuration = (double) breakDuration / 4;
 
-            int timeNeeded = (int) Math.floor(breakDuration - (relaxDuration + lunchDuration));
+            System.out.println(lunchDuration);
+            System.out.println(relaxDuration);
+            double timeNeeded = breakDuration - (relaxDuration + lunchDuration);
+
 
             if (timeNeeded >= episodeDuration) {
-                System.out.printf("You have enough time to watch %s and left with %d minutes free time.", seriesName,  timeNeeded - episodeDuration);
+                System.out.printf("You have enough time to watch %s and left with %d minutes free time.", seriesName,  (int) Math.ceil(timeNeeded - episodeDuration));
             }
             else {
-                System.out.printf("You don't have enough time to watch %s, you need %d more minutes.", seriesName, episodeDuration - timeNeeded);
+                System.out.printf("You don't have enough time to watch %s, you need %d more minutes.", seriesName, (int) Math.ceil(episodeDuration - timeNeeded));
             }
 
         }
