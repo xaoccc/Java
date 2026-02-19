@@ -16,7 +16,6 @@ public class Problem044 {
                 System.out.println("error");
                 return;
             }
-
             switch (city) {
                 case "Sofia":
                     if (salesNum <= 500) {
@@ -30,8 +29,7 @@ public class Problem044 {
                     }
                     else {
                         System.out.printf("%.2f", salesNum * 0.12);
-                    }
-                
+                    }                
                     break;
                 case "Varna":
                     if (salesNum <= 500) {
