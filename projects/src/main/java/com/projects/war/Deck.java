@@ -22,6 +22,7 @@ public class Deck {
 
             for (int j = 0; j < SUIT_SIZE; j++) {
                 Card card = new Card();
+                card.strength = i + 1;
                 if (i < 9) {
                     card.rank = String.valueOf(i + 2);
                 } else {

@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
-
         play();
     }
 
@@ -42,18 +41,56 @@ public class App {
             String player1 = input.nextLine();
             System.out.print("Player 2 name: ");
             String player2 = input.nextLine();
+            int counterDeck1 = 0;
+            int counterDeck2 = 0;
 
             while (!deck1.isEmpty() || !deck2.isEmpty()) {
-                int cardPlayerOne = (int) (Math.random() * deck1.size());
-                int cardPlayerTwo = (int) (Math.random() * deck2.size());
-                System.out.println(cardPlayerOne);
+                int indexCardPlayerOne = counterDeck1;
+                int indexCardPlayerTwo = counterDeck2;
 
-                System.out.printf("%s played %s of %s\n", player1, deck1.get(cardPlayerOne).rank, deck1.get(cardPlayerOne).suit);
-                System.out.printf("%s played %s of %s\n", player2, deck2.get(cardPlayerTwo).rank, deck2.get(cardPlayerTwo).suit);
+                // If one of the players have more cards and the counter of the other player reaches a moment where both have cards, 
+                // but the counter hits the limit, we restart the counter:
+                if (deck1.size() < counterDeck1) {
+                    counterDeck1 = 0;
+                }
 
-                deck1.remove(cardPlayerOne);
-                deck2.remove(cardPlayerTwo);
+                if (deck2.size() < counterDeck2) {
+                    counterDeck2 = 0;
+                }
+               
+                Card cardPlayerOne = deck1.get(indexCardPlayerOne);
+                Card cardPlayerTwo = deck2.get(indexCardPlayerTwo);
 
+                System.out.printf("%s played %s of %s\n", player1, cardPlayerOne.rank, cardPlayerOne.suit);
+                System.out.printf("%s played %s of %s\n", player2, cardPlayerTwo.rank, cardPlayerTwo.suit);
+
+                if (cardPlayerOne.strength < cardPlayerTwo.strength) { 
+                    // Play both cards and remove from stack  
+                    deck1.remove(cardPlayerOne);                 
+                    deck2.remove(cardPlayerTwo);
+                    // Add both cards to the bottom ot deck two
+                    deck2.add(cardPlayerTwo);
+                    deck2.add(cardPlayerOne);
+                    System.out.printf("%s wins the hand!\n", player2);
+                    
+                } else if (cardPlayerOne.strength > cardPlayerTwo.strength) {
+                    // Play both cards and remove from stack  
+                    deck1.remove(cardPlayerOne);                 
+                    deck2.remove(cardPlayerTwo);
+                    // Add both cards to the bottom ot deck two
+                    deck1.add(cardPlayerTwo);
+                    deck1.add(cardPlayerOne);
+                    System.out.printf("%s wins the hand!\n", player1);
+
+                } else {
+                    // TO DO...
+                    System.out.println("WAR WAR WAR!!!!!!!!!");
+                    sleep(10);
+                }
+                counterDeck1++;
+                counterDeck2++;
+                System.out.println(deck1.size());
+                System.out.println(deck2.size());
             }
 
         }
