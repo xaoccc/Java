@@ -1,4 +1,6 @@
 package com.projects.war;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 // Card game War
@@ -9,52 +11,68 @@ import java.util.Scanner;
 // Whoever takes all cards wins the game.
 
 public class App {
-    public static void main(String[] args) {        
+
+    public static void main(String[] args) {
 
         play();
     }
 
     public static void play() {
-        List<Card> deck1 = createDeck();
-        List<Card> deck2 = createDeck();
+        List<Card> deck = createDeck();
+        List<Card> deck1 = new ArrayList<>();
+        List<Card> deck2 = new ArrayList<>();
+        int deckSize;
+        int cardIndex;
+        while (!deck.isEmpty()) {
+            deckSize = deck.size();
+            cardIndex = (int) (Math.random() * deckSize);
+            deck1.add(deck.get(cardIndex));
+            deck.remove(cardIndex);
+            deckSize = deck.size();
+            cardIndex = (int) (Math.random() * deckSize);
+            deck2.add(deck.get(cardIndex));
+            deck.remove(cardIndex);
+        }
+
         try (Scanner input = new Scanner(System.in)) {
             System.out.println("Start game");
             sleep(3);
-            
+
             System.out.print("Player 1 name: ");
             String player1 = input.nextLine();
             System.out.print("Player 2 name: ");
             String player2 = input.nextLine();
-            
-            int cardPlayerOne = (int) (Math.random() * 52);
-            int cardPlayerTwo = (int) (Math.random() * 52);
-            System.out.println(cardPlayerOne);
 
-            System.out.printf("%s played %s of %s\n", player1, deck1.get(cardPlayerOne).rank, deck1.get(cardPlayerOne).suit);
-            System.out.printf("%s played %s of %s\n", player2, deck2.get(cardPlayerTwo).rank, deck2.get(cardPlayerTwo).suit);
-            System.out.println(deck1.size());
-            deck1.remove(cardPlayerOne);
-            System.out.println(deck1.size());
+            while (!deck1.isEmpty() || !deck2.isEmpty()) {
+                int cardPlayerOne = (int) (Math.random() * deck1.size());
+                int cardPlayerTwo = (int) (Math.random() * deck2.size());
+                System.out.println(cardPlayerOne);
+
+                System.out.printf("%s played %s of %s\n", player1, deck1.get(cardPlayerOne).rank, deck1.get(cardPlayerOne).suit);
+                System.out.printf("%s played %s of %s\n", player2, deck2.get(cardPlayerTwo).rank, deck2.get(cardPlayerTwo).suit);
+
+                deck1.remove(cardPlayerOne);
+                deck2.remove(cardPlayerTwo);
+
+            }
 
         }
-        
+
     }
 
     public static void sleep(int seconds) {
-            try {
-                Thread.sleep(seconds * 1000);
-            } catch (Exception e) {
-                System.out.println("not a valid time");
-            }
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (Exception e) {
+            System.out.println("not a valid time");
+        }
     }
 
     public static List<Card> createDeck() {
         Deck deck = new Deck();
         deck.createDeck();
         List<Card> cards = deck.getCards();
-        // for (Card card : cards) {
-        //     System.out.println(card.rank + " of " + card.suit);
-        // } 
+
         return cards;
     }
 }
