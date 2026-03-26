@@ -1,6 +1,6 @@
 package com.projects.war;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 // Card game War
@@ -41,57 +41,78 @@ public class App {
             String player1 = input.nextLine();
             System.out.print("Player 2 name: ");
             String player2 = input.nextLine();
-            int counterDeck1 = 0;
-            int counterDeck2 = 0;
 
-            while (!deck1.isEmpty() || !deck2.isEmpty()) {
-                int indexCardPlayerOne = counterDeck1;
-                int indexCardPlayerTwo = counterDeck2;
 
-                // If one of the players have more cards and the counter of the other player reaches a moment where both have cards, 
-                // but the counter hits the limit, we restart the counter:
-                if (deck1.size() < counterDeck1) {
-                    counterDeck1 = 0;
-                }
+            while (!deck1.isEmpty() && !deck2.isEmpty()) {
 
-                if (deck2.size() < counterDeck2) {
-                    counterDeck2 = 0;
-                }
-               
-                Card cardPlayerOne = deck1.get(indexCardPlayerOne);
-                Card cardPlayerTwo = deck2.get(indexCardPlayerTwo);
+                Card cardPlayerOne = deck1.remove(0);
+                Card cardPlayerTwo = deck2.remove(0);
 
                 System.out.printf("%s played %s of %s\n", player1, cardPlayerOne.rank, cardPlayerOne.suit);
                 System.out.printf("%s played %s of %s\n", player2, cardPlayerTwo.rank, cardPlayerTwo.suit);
 
-                if (cardPlayerOne.strength < cardPlayerTwo.strength) { 
-                    // Play both cards and remove from stack  
-                    deck1.remove(cardPlayerOne);                 
-                    deck2.remove(cardPlayerTwo);
+                if (cardPlayerOne.strength < cardPlayerTwo.strength) {
+
                     // Add both cards to the bottom ot deck two
                     deck2.add(cardPlayerTwo);
                     deck2.add(cardPlayerOne);
                     System.out.printf("%s wins the hand!\n", player2);
-                    
+
                 } else if (cardPlayerOne.strength > cardPlayerTwo.strength) {
-                    // Play both cards and remove from stack  
-                    deck1.remove(cardPlayerOne);                 
-                    deck2.remove(cardPlayerTwo);
                     // Add both cards to the bottom ot deck two
                     deck1.add(cardPlayerTwo);
                     deck1.add(cardPlayerOne);
                     System.out.printf("%s wins the hand!\n", player1);
 
                 } else {
-                    // TO DO...
-                    System.out.println("WAR WAR WAR!!!!!!!!!");
-                    sleep(10);
+                    List<Card> warPile = new ArrayList<>();
+
+                    // Add the initial tied cards too!
+                    warPile.add(cardPlayerOne);
+                    warPile.add(cardPlayerTwo);
+
+                    while (true) {
+
+                        if (deck1.size() < 3 || deck2.size() < 3) {
+                            System.out.printf("%s wins the game!", deck1.size() < 3 ? player2 : player1);
+                            return;
+                        }
+
+                        int strengthPlayerOne = 0;
+                        int strengthPlayerTwo = 0;
+
+                        for (int i = 0; i < 3; i++) {
+                            Card c1 = deck1.remove(0);
+                            Card c2 = deck2.remove(0);
+
+                            strengthPlayerOne += c1.strength;
+                            strengthPlayerTwo += c2.strength;
+
+                            warPile.add(c1);
+                            warPile.add(c2);
+                        }
+
+                        if (strengthPlayerOne > strengthPlayerTwo) {
+                            System.out.printf("%s wins the war!\n", player1);
+                            Collections.shuffle(warPile);
+                            deck1.addAll(warPile);
+                            break;
+                        } else if (strengthPlayerOne < strengthPlayerTwo) {
+                            System.out.printf("%s wins the war!\n", player2);
+                            Collections.shuffle(warPile);
+                            deck2.addAll(warPile);
+                            break;
+                        } else {
+                            System.out.println("WAR AGAIN!");
+                        }
+                    }
                 }
-                counterDeck1++;
-                counterDeck2++;
+
                 System.out.println(deck1.size());
                 System.out.println(deck2.size());
+                sleep(1);
             }
+            System.out.printf("%s wins the game with %d cards left!", deck1.isEmpty() ? player2 : player1, deck1.isEmpty() ? deck2.size() : deck1.size());
 
         }
 
