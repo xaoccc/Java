@@ -1,4 +1,5 @@
 package com.exercises;
+
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -26,14 +27,14 @@ public class Problem101 {
                         cache += minWealth - amounts[i];
                         amounts[i] = minWealth;
                     }
-                    
+
                 }
 
                 for (int j = 0; j < amounts.length; j++) {
                     if (cache == 0) {
                         break;
                     }
-                    
+
                     System.out.println(amounts[j]);
                     if (amounts[j] > minWealth) {
                         System.out.println(amounts[j]);
@@ -41,14 +42,13 @@ public class Problem101 {
                             amounts[j] -= cache;
                             System.out.println(amounts[j]);
                             break;
-                        }
-                        else {
+                        } else {
                             cache -= amounts[j] - minWealth;
                             amounts[j] = minWealth;
                         }
                         System.out.println(amounts[j]);
                     }
-                    
+
                 }
                 System.out.println(Arrays.toString(amounts));
 
