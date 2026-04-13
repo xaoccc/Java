@@ -8,7 +8,6 @@ import java.util.Scanner;
 // Examples: • The numbers 2, 8, 4, and 10 fall into the group of 10's. • The numbers 13, 19, 14, and 15 fall into the group of 20's. 
 
 public class Problem108 {
-
     public static void main(String[] args) {
         try (Scanner input = new Scanner(System.in)) {
             // Create an array of integers from a string of numbers divided with ", "

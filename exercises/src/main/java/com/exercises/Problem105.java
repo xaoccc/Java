@@ -13,7 +13,7 @@ public class Problem105 {
             ArrayList<String> positive = new ArrayList<>();
             ArrayList<String> negative = new ArrayList<>();
 
-            // Convert a string of whole numbers into a list of integers
+            // Convert a string of whole numbers into an array of integers(if you DO NOT need to change the collection) loof at Problem111 for ArrayList
             int[] nums = Arrays.stream(input.nextLine().trim().split(", ")).mapToInt(Integer::parseInt).toArray();
             for (Integer num : nums) {
                 if (num % 2 == 0) {
