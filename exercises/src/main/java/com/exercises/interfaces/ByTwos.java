@@ -9,8 +9,13 @@ public class ByTwos implements Series {
         this.value = 0;
     }    
     
+    @Override
     public int getNext() {
-        value += 2;
+        if (value + 2 >= MAX) {
+            System.out.println(ERRORMSG);
+        } else {
+            value += 2;
+        }
         return value;
     }
 }
