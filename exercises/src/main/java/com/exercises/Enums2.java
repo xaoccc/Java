@@ -18,8 +18,7 @@ public class Enums2 {
                 speed = s;
                 weight = w;
             }
-        }
-            
+        }            
 
         Transport allTransport[] = Transport.values();
 
